@@ -2,7 +2,13 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import { connect } from 'react-redux'
 
+// connect((store) => {
+//   return{
+//     value: store.counter.value
+//   }
+// })
 class App extends Component {
 
   state = {
