@@ -2,34 +2,25 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 
-// connect((store) => {
-//   return{
-//     value: store.counter.value
-//   }
-// })
+import { counterIncrement, counterDecrement} from './actions/counterActions'
+
 class App extends Component {
 
-  state = {
-    value: 0,
-  };
-
   handleIncrement = () => {
-    const newValue = this.state.value + 1
-    this.setState({ value: newValue });
+    return this.props.counterIncrement();
   }
 
   handleDecrement = () => {
-    const newValue = this.state.value - 1
-    this.setState({ value: newValue });
+    return this.props.counterDecrement();
   }
 
   render() {
     return (
       <div className="App">
         <h1>
-          <label className="label">{this.state.value}</label>
+          <label className="label">{this.props.counter.value}</label>
         </h1>
         <div className="buttons">
           <button type="button" className="btn btn-primary btn-lg" onClick={this.handleIncrement}>Somar</button>
@@ -40,4 +31,20 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = ({counter}) =>{
+  console.log({counter})
+  return {counter};
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    counterIncrement: () => {
+      dispatch(counterIncrement());
+    },
+    counterDecrement: () => {
+      dispatch(counterDecrement());
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

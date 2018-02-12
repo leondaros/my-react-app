@@ -1,4 +1,4 @@
-import {DECREMENT,INCREMENT} from '../config/constants/actions'
+import {DECREMENT,INCREMENT} from '../config/constants/actions';
 
 const initialState = {
   value: 0,
